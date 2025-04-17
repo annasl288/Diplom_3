@@ -30,6 +30,14 @@ class BasePage:
         with allure.step(f'Дождаться исчезновения элемента {locator}'):
             WebDriverWait(self.driver, 15).until(expected_conditions.invisibility_of_element(locator))
 
+    def wait_for_text_in_element(self, locator, text):
+        with allure.step(f'Дождаться текста в элементе {locator}'):
+            WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(locator, text))
+
+    def wait_for_change_of_text_in_element(self, locator, text):
+        with allure.step(f'Дождаться смены текста в элементе {locator}'):
+            WebDriverWait(self.driver, 10).until_not(expected_conditions.text_to_be_present_in_element(locator, text))
+
     def wait_for_url(self, url):
         with allure.step(f'Дождаться перехода к странице {url}'):
             WebDriverWait(self.driver, 5).until(expected_conditions.url_to_be(url))

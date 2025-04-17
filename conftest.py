@@ -6,9 +6,8 @@ from pages.login_page import LoginPage
 from urls import Urls
 from data import ExistingUser
 
-
-@pytest.fixture(params = ["chrome", "firefox"])
 @allure.step('Открыть браузер, перейти на главную страницу / Закрыть браузер')
+@pytest.fixture(params = ["chrome", "firefox"])
 def driver(request):
 
     driver = None
@@ -20,14 +19,16 @@ def driver(request):
     yield driver
     driver.quit()
 
-
-@pytest.fixture
 @allure.step('Авторизоваться существующим пользователем')
+@pytest.fixture
 def login(driver):
 
-    MainPage.click_login_button()
-    LoginPage.enter_email(ExistingUser.email)
-    LoginPage.enter_password(ExistingUser.password)
-    LoginPage.click_login_button()
+    main_page = MainPage(driver)
+    main_page.click_login_button()
+
+    login_page = LoginPage(driver)
+    login_page.enter_email(ExistingUser.email)
+    login_page.enter_password(ExistingUser.password)
+    login_page.click_login_button()
 
     return driver

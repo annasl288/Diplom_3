@@ -1,7 +1,6 @@
 from pages.main_page import MainPage
 from pages.feed_page import FeedPage
 from locators import FeedPageLocators, MainPageLocators
-import time
 import allure
 
 class TestOrdersFeed:
@@ -23,7 +22,6 @@ class TestOrdersFeed:
         main_page.wait_for_element(MainPageLocators.FLUORESCENT_BUN)
         main_page.add_ingredient_to_order()
         main_page.click_order_button()
-        time.sleep(6)
         order_number = main_page.get_order_number()
         main_page.close_popup_window()
         main_page.click_orders_feed_button()
@@ -50,7 +48,6 @@ class TestOrdersFeed:
         main_page.click_order_button()
 
         feed_page.open_orders_feed()
-        feed_page.wait_for_element(FeedPageLocators.TOTAL_ORDERS_COUNTER)
         total_orders_after = feed_page.get_total_orders_count()
 
         assert total_orders_after > total_orders_before
@@ -83,13 +80,13 @@ class TestOrdersFeed:
         main_page.wait_for_element(MainPageLocators.FLUORESCENT_BUN)
         main_page.add_ingredient_to_order()
         main_page.click_order_button()
-        time.sleep(6)
         order_number = main_page.get_order_number()
         main_page.close_popup_window()
         main_page.click_orders_feed_button()
 
         feed_page = FeedPage(driver)
-        time.sleep(6)
+        feed_page.wait_for_element(FeedPageLocators.ORDERS_IN_PROGRESS)
+        feed_page.wait_for_text_in_element(FeedPageLocators.ORDERS_IN_PROGRESS, order_number)
         orders_in_progress = feed_page.get_orders_in_progress_list()
 
         assert order_number in orders_in_progress

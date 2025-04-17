@@ -14,6 +14,7 @@ class FeedPageLocators:
     TOTAL_ORDERS_COUNTER = (By.XPATH, "(.//p[@class= 'OrderFeed_number__2MbrQ text text_type_digits-large'])[1]") # Счётчик заказов за всё время
     TODAY_ORDERS_COUNTER = (By.XPATH, "(.//p[@class= 'OrderFeed_number__2MbrQ text text_type_digits-large'])[2]") # Счётчик заказов за сегодня
     ORDERS_IN_PROGRESS = (By.XPATH, ".//ul[contains(@class, 'OrderFeed_orderListReady')]") # Список заказов в работе
+    ALL_ORDERS_READY = (By.XPATH, ".//li[contains(@class, 'text text_type_main-small')]") # Плейсхолдер "Все текущие заказы готовы!"
 
 class LoginPageLocators:
 

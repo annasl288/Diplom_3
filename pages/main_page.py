@@ -1,6 +1,7 @@
 from pages.base_page import BasePage
 from locators import MainPageLocators
 from urls import Urls
+from data import OrderData
 from seletools.actions import drag_and_drop
 import allure
 
@@ -51,5 +52,6 @@ class MainPage(BasePage):
 
     @allure.step('Получить номер заказа')
     def get_order_number(self):
+        self.wait_for_change_of_text_in_element(MainPageLocators.ORDER_NUMBER, OrderData.default_order_number)
         number = self.get_element(MainPageLocators.ORDER_NUMBER).text
         return number
