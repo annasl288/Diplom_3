@@ -1,7 +1,8 @@
 import pytest
 import allure
 from selenium import webdriver
-from locators import MainPageLocators, LoginPageLocators
+from pages.main_page import MainPage
+from pages.login_page import LoginPage
 from urls import Urls
 from data import ExistingUser
 
@@ -24,9 +25,9 @@ def driver(request):
 @allure.step('Авторизоваться существующим пользователем')
 def login(driver):
 
-    driver.find_element(*MainPageLocators.LOGIN_BUTTON).click()
-    driver.find_element(*LoginPageLocators.EMAIL_INPUT).send_keys(ExistingUser.email)
-    driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(ExistingUser.password)
-    driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
+    MainPage.click_login_button()
+    LoginPage.enter_email(ExistingUser.email)
+    LoginPage.enter_password(ExistingUser.password)
+    LoginPage.click_login_button()
 
     return driver

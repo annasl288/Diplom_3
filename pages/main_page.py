@@ -22,6 +22,10 @@ class MainPage(BasePage):
     def click_account_button(self):
         self.click_element(MainPageLocators.ACCOUNT_BUTTON)
 
+    @allure.step('Нажать на кнопку "Войти в аккаунт"')
+    def click_login_button(self):
+        self.click_element(MainPageLocators.LOGIN_BUTTON)
+
     @allure.step('Нажать на ингредиент')
     def open_ingredient_details(self):
         self.click_element(MainPageLocators.FLUORESCENT_BUN)
