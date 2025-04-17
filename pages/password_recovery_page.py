@@ -1,7 +1,6 @@
 from pages.base_page import BasePage
 from locators import PasswordRecoveryLocators
 from urls import Urls
-from data import ExistingUser
 import allure
 
 class PasswordRecoveryPage(BasePage):
@@ -11,8 +10,8 @@ class PasswordRecoveryPage(BasePage):
         self.go_to_url(Urls.password_recovery)
 
     @allure.step('Ввести email')
-    def enter_email(self):
-        self.get_element(PasswordRecoveryLocators.EMAIL_INPUT).send_keys(ExistingUser.email)
+    def enter_email(self, email):
+        self.get_element(PasswordRecoveryLocators.EMAIL_INPUT).send_keys(email)
 
     @allure.step('Нажать на кнопку "Восстановить"')
     def click_recover_password(self):

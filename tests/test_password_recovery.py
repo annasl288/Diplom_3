@@ -2,6 +2,7 @@ from pages.login_page import LoginPage
 from pages.password_recovery_page import PasswordRecoveryPage
 from locators import PasswordRecoveryLocators
 from urls import Urls
+from data import ExistingUser
 import allure
 
 class TestPasswordRecovery:
@@ -20,7 +21,7 @@ class TestPasswordRecovery:
 
         password_recovery_page = PasswordRecoveryPage(driver)
         password_recovery_page.open_password_recovery_page()
-        password_recovery_page.enter_email()
+        password_recovery_page.enter_email(ExistingUser.email)
         password_recovery_page.click_recover_password()
         password_recovery_page.wait_for_element(PasswordRecoveryLocators.SAVE_BUTTON)
 
@@ -31,7 +32,7 @@ class TestPasswordRecovery:
 
         password_recovery_page = PasswordRecoveryPage(driver)
         password_recovery_page.open_password_recovery_page()
-        password_recovery_page.enter_email()
+        password_recovery_page.enter_email(ExistingUser.email)
         password_recovery_page.click_recover_password()
         password_recovery_page.wait_for_element(PasswordRecoveryLocators.SAVE_BUTTON)
         password_recovery_page.click_show_password_button()
